@@ -30,11 +30,11 @@ plt.show()
 
 
 ###################################
+
 import numpy as np
 coaches = pd.read_csv('coaches.csv', delimiter=",")
 teams = pd.read_csv('teams.csv', delimiter=",")
 
-# Calculate the mean and standard deviation
 mean_won = np.mean(coaches['won'])
 std_dev_won = np.std(coaches['won'])
 mean_lost = np.mean(coaches['lost'])
@@ -44,28 +44,26 @@ std_dev_post_wins = np.std(coaches['post_wins'])
 mean_post_losses = np.mean(coaches['post_losses'])
 std_dev_post_losses = np.std(coaches['post_losses'])
 
-# Calculate the z-scores for each value
 z_scores_won = [(x - mean_won) / std_dev_won for x in coaches['won']]
 z_scores_lost = [(x - mean_lost) / std_dev_lost for x in coaches['lost']]
 z_scores_post_wins = [(x - mean_post_wins) / std_dev_post_wins for x in coaches['post_wins']]
 z_scores_post_losses = [(x - mean_post_losses) / std_dev_post_losses for x in coaches['post_losses']]
 
-# Define a threshold for identifying outliers
-threshold = 2  # You can adjust this value based on your needs
+threshold = 2
 
-# Identify outliers with z-scores exceeding the threshold
 outliers_won = [coaches['won'][i] for i, z in enumerate(z_scores_won) if abs(z) > threshold]
 outliers_lost = [coaches['lost'][i] for i, z in enumerate(z_scores_lost) if abs(z) > threshold]
 outliers_post_wins = [coaches['post_wins'][i] for i, z in enumerate(z_scores_post_wins) if abs(z) > threshold]
 outliers_post_losses = [coaches['post_losses'][i] for i, z in enumerate(z_scores_post_losses) if abs(z) > threshold]
 
-print("Coaches Dataset Outliers")
+print("")
+print("Outliers for Coaches Dataset:")
+print("")
 print("Outliers Won:", outliers_won)
 print("Outliers Lost:", outliers_lost)
 print("Outliers Post Wins:", outliers_post_wins)
 print("Outliers Post Losses:", outliers_post_losses)
 
-# Calculate the mean and standard deviation
 mean_o_fgm = np.mean(teams['o_fgm'])
 std_dev_o_fgm = np.std(teams['o_fgm'])
 mean_o_fga = np.mean(teams['o_fga'])
@@ -105,7 +103,6 @@ std_dev_d_ftm = np.std(teams['d_ftm'])
 mean_d_fta = np.mean(teams['d_fta'])
 std_dev_d_fta = np.std(teams['d_fta'])
 
-# Calculate the z-scores for each value
 z_scores_o_fgm = [(x - mean_o_fgm) / std_dev_o_fgm for x in teams['o_fgm']]
 z_scores_o_fga = [(x - mean_o_fga) / std_dev_o_fga for x in teams['o_fga']]
 z_scores_o_ftm = [(x - mean_o_ftm) / std_dev_o_ftm for x in teams['o_ftm']]
@@ -126,10 +123,8 @@ z_scores_d_fga = [(x - mean_d_fga) / std_dev_d_fga for x in teams['d_fga']]
 z_scores_d_ftm = [(x - mean_d_ftm) / std_dev_d_ftm for x in teams['d_ftm']]
 z_scores_d_fta = [(x - mean_d_fta) / std_dev_d_fta for x in teams['d_fta']]
 
-# Define a threshold for identifying outliers
-threshold = 2  # You can adjust this value based on your needs
+threshold = 2
 
-# Identify outliers with z-scores exceeding the threshold
 outliers_o_fgm = [teams['o_fgm'][i] for i, z in enumerate(z_scores_o_fgm) if abs(z) > threshold]
 outliers_o_fga = [teams['o_fga'][i] for i, z in enumerate(z_scores_o_fga) if abs(z) > threshold]
 outliers_o_ftm = [teams['o_ftm'][i] for i, z in enumerate(z_scores_o_ftm) if abs(z) > threshold]
@@ -150,7 +145,9 @@ outliers_d_fga = [teams['d_fga'][i] for i, z in enumerate(z_scores_d_fga) if abs
 outliers_d_ftm = [teams['d_ftm'][i] for i, z in enumerate(z_scores_d_ftm) if abs(z) > threshold]
 outliers_d_fta = [teams['d_fta'][i] for i, z in enumerate(z_scores_d_fta) if abs(z) > threshold]
 
-print("Teams Dataset Outliers")
+print("")
+print("Outliers for Teams Dataset:")
+print("")
 print("Outliers o_fgm:", outliers_o_fgm)
 print("Outliers o_fga:", outliers_o_fga)
 print("Outliers o_ftm:", outliers_o_ftm)
